@@ -27,13 +27,14 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Ho Ten</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" value="${sinhVien.hoTen}">
     </div>
     <div class="mb-3">
         <label class="form-label">Lop</label>
         <select class="form-select" aria-label="Default select example">
             <c:forEach items="${lops}" var="i">
-                <option value="${i}">${i}</option>
+                <option value="${i}"
+                        <c:if test="${sinhVien.lop == i}"> selected</c:if>>${i}</option>
             </c:forEach>
 
         </select>
@@ -41,10 +42,18 @@
     <div class="mb-3">
         <label class="form-label">Giới tính</label>
         <br>
-        <input type="radio" id="contactChoice1" name="contact" value="Nam"/>
+        <input type="radio"
+               id="contactChoice1"
+               name="contact"
+               value="Nam"
+                <c:if test="${sinhVien.gioiTinh =='Nam' }"> checked</c:if>/>
         <label for="contactChoice1">Nam</label>
 
-        <input type="radio" id="contactChoice2" name="contact" value="Nu"/>
+        <input type="radio"
+               id="contactChoice2"
+               name="contact"
+                <c:if test="${sinhVien.gioiTinh =='Nu' }"> checked</c:if>
+               value="Nu"/>
         <label for="contactChoice2">Nu</label>
     </div>
 

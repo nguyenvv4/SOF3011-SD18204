@@ -47,6 +47,7 @@ public class SinhVienServlet extends HttpServlet {
                 sinhVienDetail = sinhVien;
             }
         }
+        request.setAttribute("lops", lops);
         request.setAttribute("sinhVien", sinhVienDetail);
         request.getRequestDispatcher("/detail.jsp").forward(request, response);
     }
