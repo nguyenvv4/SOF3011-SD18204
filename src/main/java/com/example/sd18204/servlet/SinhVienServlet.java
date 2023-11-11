@@ -61,7 +61,27 @@ public class SinhVienServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Da chay vao post");
+        String uri = request.getRequestURI();
+        if (uri.contains("/add")) {
+            this.addNew(request, response);
+        }
 
+
+    }
+
+    private void addNew(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // lấy thông tin trên form xuống
+        String id = request.getParameter("id");
+        String ma = request.getParameter("ma");
+        String hoTen = request.getParameter("hoTen");
+        String lop = request.getParameter("lop");
+        String gioiTinh = request.getParameter("gioiTinh");
+        // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
+        SinhVien sinhVien = new SinhVien(id, ma, hoTen, lop, gioiTinh);
+
+        // add sinh viên vào list
+        list.add(sinhVien);
+
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 }
