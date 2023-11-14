@@ -35,4 +35,18 @@ public class SinhVien {
         this.lop = lop;
         this.gioiTinh = gioiTinh;
     }
+
+    @Override
+    public String toString() {
+        return "SinhVien{" +
+                "id='" + id + '\'' +
+                ", ma='" + ma + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                ", lop='" + lop + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                ", namSinh=" + namSinh +
+                ", trangThai='" + trangThai + '\'' +
+                ", diaChi='" + diaChi + '\'' +
+                '}';
+    }
 }

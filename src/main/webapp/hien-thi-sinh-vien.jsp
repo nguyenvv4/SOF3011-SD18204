@@ -72,7 +72,7 @@
             <td>${i.lop}</td>
             <td>${i.gioiTinh}</td>
             <td>
-                <a href="#" class="btn btn-primary">Xoa</a>
+                <a href="/sinh-vien/delete?index=${sinhVien.index}" class="btn btn-primary">Xoa</a>
                 <a href="/sinh-vien/detail?id=${i.id}" class="btn btn-primary">Detail</a>
             </td>
         </tr>
@@ -80,6 +80,23 @@
     </tbody>
 </table>
 
+
+<div class="row">
+    <c:forEach var="i" items="${listSinhVien}" varStatus="sinhVien">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="/w3images/lights.jpg">
+                    <img src="https://product.hstatic.net/1000253775/product/160_ao_thun_1m-13_c969e65fd47d4cf6b1afa8ef152a70f4_grande.jpg"
+                         alt="Lights" style="width:100%">
+                    <div class="caption">
+                        <p>${i.hoTen}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </c:forEach>
+
+</div>
 
 </body>
 </html>

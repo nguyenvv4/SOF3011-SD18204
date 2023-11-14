@@ -16,22 +16,22 @@
 
 </head>
 <body class="container">
-<form>
-    <div class="mb-3">
-        <label class="form-label">ID</label>
-        <input type="text" class="form-control" value="${sinhVien.id}">
-    </div>
+<form action="/sinh-vien/update?id=${sinhVien.id}" method="post">
+<%--    <div class="mb-3">--%>
+<%--        <label class="form-label">ID</label>--%>
+<%--        <input type="text" class="form-control" value="${sinhVien.id}">--%>
+<%--    </div>--%>
     <div class="mb-3">
         <label class="form-label">Ma</label>
-        <input type="text" class="form-control" value="${sinhVien.ma}">
+        <input type="text" class="form-control" value="${sinhVien.ma}" name="ma">
     </div>
     <div class="mb-3">
         <label class="form-label">Ho Ten</label>
-        <input type="text" class="form-control" value="${sinhVien.hoTen}">
+        <input type="text" class="form-control" value="${sinhVien.hoTen}" name="hoTen">
     </div>
     <div class="mb-3">
         <label class="form-label">Lop</label>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" name="lop">
             <c:forEach items="${lops}" var="i">
                 <option value="${i}"
                         <c:if test="${sinhVien.lop == i}"> selected</c:if>>${i}</option>
@@ -44,20 +44,20 @@
         <br>
         <input type="radio"
                id="contactChoice1"
-               name="contact"
+               name="gioiTinh"
                value="Nam"
                 <c:if test="${sinhVien.gioiTinh =='Nam' }"> checked</c:if>/>
         <label for="contactChoice1">Nam</label>
 
         <input type="radio"
                id="contactChoice2"
-               name="contact"
+               name="gioiTinh"
                 <c:if test="${sinhVien.gioiTinh =='Nu' }"> checked</c:if>
                value="Nu"/>
         <label for="contactChoice2">Nu</label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>
 </body>
 </html>

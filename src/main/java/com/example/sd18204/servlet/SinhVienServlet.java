@@ -11,7 +11,9 @@ import java.util.ArrayList;
 @WebServlet(name = "SinhVienServlet", value = {
         "/sinh-vien/hien-thi", // get
         "/sinh-vien/add",
+        "/sinh-vien/update",
         "/sinh-vien/detail", //get
+        "/sinh-vien/delete", //get
 
 })
 public class SinhVienServlet extends HttpServlet {
@@ -36,7 +38,15 @@ public class SinhVienServlet extends HttpServlet {
             this.getList(request, response);
         } else if (uri.contains("/detail")) {
             this.detail(request, response);
+        } else if (uri.contains("/delete")) {
+            this.delete(request, response);
         }
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int index = Integer.parseInt(request.getParameter("index"));
+        list.remove(index);
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,9 +74,30 @@ public class SinhVienServlet extends HttpServlet {
         String uri = request.getRequestURI();
         if (uri.contains("/add")) {
             this.addNew(request, response);
+        } else if (uri.contains("/update")) {
+            this.update(request, response);
         }
 
 
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("id");
+        String ma = request.getParameter("ma");
+        String hoTen = request.getParameter("hoTen");
+        String lop = request.getParameter("lop");
+        String gioiTinh = request.getParameter("gioiTinh");
+        // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
+//            SinhVien sinhVienNew = new SinhVien(id, ma, hoTen, lop, gioiTinh);
+        for (SinhVien sv : list) {
+            if (sv.getId().equals(id)) {
+                sv.setMa(ma);
+                sv.setHoTen(hoTen);
+                sv.setLop(lop);
+                sv.setGioiTinh(gioiTinh);
+            }
+        }
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void addNew(HttpServletRequest request, HttpServletResponse response) throws IOException {
