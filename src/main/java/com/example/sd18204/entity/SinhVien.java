@@ -1,6 +1,7 @@
 package com.example.sd18204.entity;
 
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,43 +11,30 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "Students")
 public class SinhVien {
 
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    private String ma;
-
+    @Column(name = "ten")
     private String hoTen;
 
-    private String lop;
+    @ManyToOne
+    @JoinColumn(name = "lop")
+    private LopHoc lop;
 
+    @Column(name = "gioiTinh")
     private String gioiTinh;
 
-    private Integer namSinh;
-
-    private String trangThai;
-
+    @Column(name = "diaChi")
     private String diaChi;
+    @Column(name = "chieuCao")
+    private String chieuCao;
+    @Column(name = "canNang")
+    private String canNang;
 
-    public SinhVien(String id, String ma, String hoTen, String lop, String gioiTinh) {
-        this.id = id;
-        this.ma = ma;
-        this.hoTen = hoTen;
-        this.lop = lop;
-        this.gioiTinh = gioiTinh;
-    }
-
-    @Override
-    public String toString() {
-        return "SinhVien{" +
-                "id='" + id + '\'' +
-                ", ma='" + ma + '\'' +
-                ", hoTen='" + hoTen + '\'' +
-                ", lop='" + lop + '\'' +
-                ", gioiTinh='" + gioiTinh + '\'' +
-                ", namSinh=" + namSinh +
-                ", trangThai='" + trangThai + '\'' +
-                ", diaChi='" + diaChi + '\'' +
-                '}';
-    }
 }

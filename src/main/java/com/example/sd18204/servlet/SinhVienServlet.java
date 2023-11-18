@@ -21,14 +21,14 @@ public class SinhVienServlet extends HttpServlet {
     ArrayList<String> lops = new ArrayList<>();
 
     public SinhVienServlet() {
-        list.add(new SinhVien("1", "SV1", "Nguyen Van A", "SD12345", "Nam"));
-        list.add(new SinhVien("2", "SV2", "Nguyen Van B", "SD12346", "Nam"));
-        list.add(new SinhVien("3", "SV3", "Nguyen Van C", "SD12347", "Nu"));
-        list.add(new SinhVien("4", "SV4", "Nguyen Van D", "SD12345", "Nam"));
-        lops.add("SD12345");
-        lops.add("SD12346");
-        lops.add("SD12347");
-        lops.add("SD12349");
+//        list.add(new SinhVien("1", "SV1", "Nguyen Van A", "SD12345", "Nam"));
+//        list.add(new SinhVien("2", "SV2", "Nguyen Van B", "SD12346", "Nam"));
+//        list.add(new SinhVien("3", "SV3", "Nguyen Van C", "SD12347", "Nu"));
+//        list.add(new SinhVien("4", "SV4", "Nguyen Van D", "SD12345", "Nam"));
+//        lops.add("SD12345");
+//        lops.add("SD12346");
+//        lops.add("SD12347");
+//        lops.add("SD12349");
     }
 
     @Override
@@ -89,14 +89,14 @@ public class SinhVienServlet extends HttpServlet {
         String gioiTinh = request.getParameter("gioiTinh");
         // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
 //            SinhVien sinhVienNew = new SinhVien(id, ma, hoTen, lop, gioiTinh);
-        for (SinhVien sv : list) {
-            if (sv.getId().equals(id)) {
-                sv.setMa(ma);
-                sv.setHoTen(hoTen);
-                sv.setLop(lop);
-                sv.setGioiTinh(gioiTinh);
-            }
-        }
+//        for (SinhVien sv : list) {
+//            if (sv.getId().equals(id)) {
+//                sv.setMa(ma);
+//                sv.setHoTen(hoTen);
+//                sv.setLop(lop);
+//                sv.setGioiTinh(gioiTinh);
+//            }
+//        }
         response.sendRedirect("/sinh-vien/hien-thi");
     }
 
@@ -108,10 +108,10 @@ public class SinhVienServlet extends HttpServlet {
         String lop = request.getParameter("lop");
         String gioiTinh = request.getParameter("gioiTinh");
         // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
-        SinhVien sinhVien = new SinhVien(id, ma, hoTen, lop, gioiTinh);
-
-        // add sinh viên vào list
-        list.add(sinhVien);
+//        SinhVien sinhVien = new SinhVien(id, ma, hoTen, lop, gioiTinh);
+//
+//        // add sinh viên vào list
+//        list.add(sinhVien);
 
         response.sendRedirect("/sinh-vien/hien-thi");
     }
