@@ -19,10 +19,7 @@
         <label class="form-label">ID</label>
         <input type="text" class="form-control" name="id">
     </div>
-    <div class="mb-3">
-        <label class="form-label">Ma</label>
-        <input type="text" class="form-control" name="ma">
-    </div>
+
     <div class="mb-3">
         <label class="form-label">Ho Ten</label>
         <input type="text" class="form-control" name="hoTen">
@@ -54,7 +51,7 @@
     <tr>
         <td>STT</td>
         <td>ID</td>
-        <td>Ma</td>
+<%--        <td>Ma</td>--%>
         <td>Ho ten</td>
         <td>Lop</td>
         <td>Gioi Tinh</td>
@@ -67,9 +64,9 @@
         <tr>
             <td>${sinhVien.index}</td>
             <td>${i.id}</td>
-            <td>${i.ma}</td>
+<%--            <td>${i.ma}</td>--%>
             <td>${i.hoTen}</td>
-            <td>${i.lop}</td>
+            <td>${i.lop.tenLop}</td>
             <td>${i.gioiTinh}</td>
             <td>
                 <a href="/sinh-vien/delete?index=${sinhVien.index}" class="btn btn-primary">Xoa</a>

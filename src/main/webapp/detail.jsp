@@ -21,10 +21,7 @@
 <%--        <label class="form-label">ID</label>--%>
 <%--        <input type="text" class="form-control" value="${sinhVien.id}">--%>
 <%--    </div>--%>
-    <div class="mb-3">
-        <label class="form-label">Ma</label>
-        <input type="text" class="form-control" value="${sinhVien.ma}" name="ma">
-    </div>
+
     <div class="mb-3">
         <label class="form-label">Ho Ten</label>
         <input type="text" class="form-control" value="${sinhVien.hoTen}" name="hoTen">
