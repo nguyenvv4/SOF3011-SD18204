@@ -11,4 +11,8 @@ public class SinhVienService {
     public ArrayList<SinhVien> getAll(){
         return sinhVienRepository.getList();
     }
+
+    public void addNew(SinhVien sinhVien){
+        sinhVienRepository.addNew(sinhVien);
+    }
 }

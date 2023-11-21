@@ -1,6 +1,8 @@
 package com.example.sd18204.servlet;
 
+import com.example.sd18204.entity.LopHoc;
 import com.example.sd18204.entity.SinhVien;
+import com.example.sd18204.service.LopHocService;
 import com.example.sd18204.service.SinhVienService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -19,11 +21,11 @@ import java.util.ArrayList;
 })
 public class SinhVienServlet extends HttpServlet {
     ArrayList<SinhVien> list = new ArrayList<>();
+
     ArrayList<String> lops = new ArrayList<>();
     // Servlet => Service => Repository
     SinhVienService sinhVienService = new SinhVienService();
-
-
+    LopHocService lopHocService = new LopHocService();
 
 
     @Override
@@ -58,7 +60,8 @@ public class SinhVienServlet extends HttpServlet {
     }
 
     private void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("lops", lops);
+        ArrayList<LopHoc> listLopHoc = lopHocService.getList();
+        request.setAttribute("lops", listLopHoc);
 
         // => thay the bằng service.getList()
         ArrayList<SinhVien> list = sinhVienService.getAll();
@@ -100,16 +103,18 @@ public class SinhVienServlet extends HttpServlet {
 
     private void addNew(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // lấy thông tin trên form xuống
-        String id = request.getParameter("id");
         String ma = request.getParameter("ma");
         String hoTen = request.getParameter("hoTen");
         String lop = request.getParameter("lop");
         String gioiTinh = request.getParameter("gioiTinh");
         // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
-//        SinhVien sinhVien = new SinhVien(id, ma, hoTen, lop, gioiTinh);
-//
-//        // add sinh viên vào list
-//        list.add(sinhVien);
+        SinhVien sinhVien = new SinhVien();
+        sinhVien.setGioiTinh(gioiTinh);
+        sinhVien.setHoTen(hoTen);
+        LopHoc lopHoc = new LopHoc();
+        lopHoc.setId(Integer.parseInt(lop));
+        sinhVien.setLop(lopHoc);
+        sinhVienService.addNew(sinhVien);
 
         response.sendRedirect("/sinh-vien/hien-thi");
     }

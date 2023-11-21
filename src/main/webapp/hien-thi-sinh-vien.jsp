@@ -28,7 +28,7 @@
         <label class="form-label">Lop</label>
         <select class="form-select" aria-label="Default select example" name="lop">
             <c:forEach items="${lops}" var="i">
-                <option value="${i}">${i}</option>
+                <option value="${i.id}">${i.tenLop}</option>
             </c:forEach>
 
         </select>
