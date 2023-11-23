@@ -47,14 +47,10 @@ public class SinhVienServlet extends HttpServlet {
     }
 
     private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        SinhVien sinhVienDetail = new SinhVien();
-        for (SinhVien sinhVien : list) {
-            if (sinhVien.getId().equals(id)) {
-                sinhVienDetail = sinhVien;
-            }
-        }
-        request.setAttribute("lops", lops);
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        ArrayList<LopHoc> listLopHoc = lopHocService.getList();
+        request.setAttribute("lops", listLopHoc);
+        SinhVien sinhVienDetail = sinhVienService.detail(id);
         request.setAttribute("sinhVien", sinhVienDetail);
         request.getRequestDispatcher("/detail.jsp").forward(request, response);
     }
@@ -83,21 +79,20 @@ public class SinhVienServlet extends HttpServlet {
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String id = request.getParameter("id");
+        Integer id = Integer.parseInt(request.getParameter("id"));
         String ma = request.getParameter("ma");
         String hoTen = request.getParameter("hoTen");
         String lop = request.getParameter("lop");
         String gioiTinh = request.getParameter("gioiTinh");
         // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
-//            SinhVien sinhVienNew = new SinhVien(id, ma, hoTen, lop, gioiTinh);
-//        for (SinhVien sv : list) {
-//            if (sv.getId().equals(id)) {
-//                sv.setMa(ma);
-//                sv.setHoTen(hoTen);
-//                sv.setLop(lop);
-//                sv.setGioiTinh(gioiTinh);
-//            }
-//        }
+        SinhVien sinhVien = new SinhVien();
+        sinhVien.setId(id);
+        sinhVien.setGioiTinh(gioiTinh);
+        sinhVien.setHoTen(hoTen);
+        LopHoc lopHoc = new LopHoc();
+        lopHoc.setId(Integer.parseInt(lop));
+        sinhVien.setLop(lopHoc);
+        sinhVienService.update(sinhVien);
         response.sendRedirect("/sinh-vien/hien-thi");
     }
 

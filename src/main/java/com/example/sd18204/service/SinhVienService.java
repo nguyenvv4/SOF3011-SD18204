@@ -7,12 +7,21 @@ import java.util.ArrayList;
 
 public class SinhVienService {
     // service => repo
-    SinhVienRepository sinhVienRepository= new SinhVienRepository();
-    public ArrayList<SinhVien> getAll(){
+    SinhVienRepository sinhVienRepository = new SinhVienRepository();
+
+    public ArrayList<SinhVien> getAll() {
         return sinhVienRepository.getList();
     }
 
-    public void addNew(SinhVien sinhVien){
+    public void addNew(SinhVien sinhVien) {
         sinhVienRepository.addNew(sinhVien);
+    }
+
+    public void update(SinhVien sinhVien) {
+        sinhVienRepository.update(sinhVien);
+    }
+
+    public SinhVien detail(Integer id){
+        return sinhVienRepository.getById(id);
     }
 }
