@@ -9,6 +9,10 @@ public class SinhVienService {
     // service => repo
     SinhVienRepository sinhVienRepository = new SinhVienRepository();
 
+    public ArrayList<SinhVien> search(String hoTen) {
+        return sinhVienRepository.searchByName(hoTen);
+    }
+
     public ArrayList<SinhVien> getAll() {
         return sinhVienRepository.getList();
     }
@@ -21,7 +25,16 @@ public class SinhVienService {
         sinhVienRepository.update(sinhVien);
     }
 
-    public SinhVien detail(Integer id){
+    public SinhVien detail(Integer id) {
         return sinhVienRepository.getById(id);
+    }
+
+    public void delete(Integer id) {
+        SinhVien sinhVien = sinhVienRepository.getById(id);
+        if (sinhVien != null) {
+            sinhVienRepository.delete(sinhVien);
+        } else {
+            return;
+        }
     }
 }

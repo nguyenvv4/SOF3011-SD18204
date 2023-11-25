@@ -59,4 +59,28 @@ public class SinhVienRepository {
         }
 
     }
+
+    public ArrayList<SinhVien> searchByName(String hoTen) {
+        ArrayList<SinhVien> list = new ArrayList<>();
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery("from SinhVien where hoTen like :hoTen");
+            query.setParameter("hoTen", "%" + hoTen + "%");
+            list = (ArrayList<SinhVien>) query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public void delete(SinhVien sinhVien) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(sinhVien);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        }
+    }
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
         "/sinh-vien/update",
         "/sinh-vien/detail", //get
         "/sinh-vien/delete", //get
+        "/sinh-vien/search", //post
 
 })
 public class SinhVienServlet extends HttpServlet {
@@ -41,8 +42,8 @@ public class SinhVienServlet extends HttpServlet {
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int index = Integer.parseInt(request.getParameter("index"));
-        list.remove(index);
+        Integer x = Integer.parseInt(request.getParameter("id"));
+        sinhVienService.delete(x);
         response.sendRedirect("/sinh-vien/hien-thi");
     }
 
@@ -73,9 +74,20 @@ public class SinhVienServlet extends HttpServlet {
             this.addNew(request, response);
         } else if (uri.contains("/update")) {
             this.update(request, response);
+        } else if (uri.contains("/search")) {
+            this.search(request, response);
         }
 
 
+    }
+
+    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String hoTen = request.getParameter("hoTen");
+        ArrayList<LopHoc> listLopHoc = lopHocService.getList();
+        ArrayList<SinhVien> list = sinhVienService.search(hoTen);
+        request.setAttribute("lops", listLopHoc);
+        request.setAttribute("listSinhVien", list);
+        request.getRequestDispatcher("/hien-thi-sinh-vien.jsp").forward(request, response);
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {

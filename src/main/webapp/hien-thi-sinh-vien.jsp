@@ -45,13 +45,21 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<form action="/sinh-vien/search" method="post">
+    <div class="mb-3">
+        <label class="form-label">Ho Ten</label>
+        <input type="text" class="form-control" name="hoTen">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
 <p>Danh sach sinh vien</p>
 <table class="table">
     <thead>
     <tr>
         <td>STT</td>
         <td>ID</td>
-<%--        <td>Ma</td>--%>
+        <%--        <td>Ma</td>--%>
         <td>Ho ten</td>
         <td>Lop</td>
         <td>Gioi Tinh</td>
@@ -64,12 +72,12 @@
         <tr>
             <td>${sinhVien.index}</td>
             <td>${i.id}</td>
-<%--            <td>${i.ma}</td>--%>
+                <%--            <td>${i.ma}</td>--%>
             <td>${i.hoTen}</td>
             <td>${i.lop.tenLop}</td>
             <td>${i.gioiTinh}</td>
             <td>
-                <a href="/sinh-vien/delete?index=${sinhVien.index}" class="btn btn-primary">Xoa</a>
+                <a href="/sinh-vien/delete?id=${i.id}" class="btn btn-primary">Xoa</a>
                 <a href="/sinh-vien/detail?id=${i.id}" class="btn btn-primary">Detail</a>
             </td>
         </tr>
@@ -78,22 +86,22 @@
 </table>
 
 
-<div class="row">
-    <c:forEach var="i" items="${listSinhVien}" varStatus="sinhVien">
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <a href="/w3images/lights.jpg">
-                    <img src="https://product.hstatic.net/1000253775/product/160_ao_thun_1m-13_c969e65fd47d4cf6b1afa8ef152a70f4_grande.jpg"
-                         alt="Lights" style="width:100%">
-                    <div class="caption">
-                        <p>${i.hoTen}</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </c:forEach>
-
-</div>
+<%--<div class="row">--%>
+<%--    <c:forEach var="i" items="${listSinhVien}" varStatus="sinhVien">--%>
+<%--        <div class="col-md-4">--%>
+<%--            <div class="thumbnail">--%>
+<%--                <a href="/w3images/lights.jpg">--%>
+<%--                    <img src="https://product.hstatic.net/1000253775/product/160_ao_thun_1m-13_c969e65fd47d4cf6b1afa8ef152a70f4_grande.jpg"--%>
+<%--                         alt="Lights" style="width:100%">--%>
+<%--                    <div class="caption">--%>
+<%--                        <p>${i.hoTen}</p>--%>
+<%--                    </div>--%>
+<%--                </a>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </c:forEach>--%>
+<%----%>
+<%--</div>--%>
 
 </body>
 </html>
