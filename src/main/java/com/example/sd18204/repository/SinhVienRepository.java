@@ -1,6 +1,7 @@
 package com.example.sd18204.repository;
 
 import com.example.sd18204.entity.SinhVien;
+import com.example.sd18204.entity.SinhVienCus;
 import com.example.sd18204.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -81,6 +82,37 @@ public class SinhVienRepository {
         } catch (Exception e) {
             e.printStackTrace();
             transaction.rollback();
+        }
+    }
+
+
+    public ArrayList<SinhVienCus> getListcus() {
+        ArrayList<SinhVienCus> list = new ArrayList<>();
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            String hql = "select new com.example.sd18204.entity.SinhVienCus(s.hoTen,l.tenLop) " +
+                    " from com.example.sd18204.entity.SinhVien s" +
+                    " join com.example.sd18204.entity.LopHoc l " +
+                    " On s.lop.id = l.id";
+
+            Query query = session.createQuery(hql);
+            list = (ArrayList<SinhVienCus>) query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        SinhVienRepository sinhVienRepository = new SinhVienRepository();
+        ArrayList<SinhVien> list = new ArrayList<>();
+        list = sinhVienRepository.getList();
+        for (SinhVien sinhVien : list) {
+            System.out.println(sinhVien.getHoTen() + " - " + sinhVien.getLop().getTenLop());
+        }
+        System.out.println("=========");
+        ArrayList<SinhVienCus> x = sinhVienRepository.getListcus();
+        for (SinhVienCus sinhVienCus: x){
+            System.out.println(sinhVienCus.toString());
         }
     }
 }
