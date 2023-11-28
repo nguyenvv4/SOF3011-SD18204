@@ -115,26 +115,19 @@ public class SinhVienServlet extends HttpServlet {
 
     private void addNew(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // lấy thông tin trên form xuống
-//        String ma = request.getParameter("ma");
-//        String hoTen = request.getParameter("hoTen");
-//        String lop = request.getParameter("lop");
-//        String gioiTinh = request.getParameter("gioiTinh");
         SinhVienViewModel sinhVienViewModel = new SinhVienViewModel();
+        SinhVien sinhVien = new SinhVien();
         try {
             BeanUtils.populate(sinhVienViewModel, request.getParameterMap());
-            System.out.println(sinhVienViewModel.toString());
+            sinhVien.copyProperties(sinhVienViewModel);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("sinh vien la :" + sinhVien.toString());
         // Tạo đối tượng sinh vieen từ thông tin vừa lấy được
-        SinhVien sinhVien = new SinhVien();
-        sinhVien.setGioiTinh(sinhVienViewModel.getGioiTinh());
-//        sinhVien.setHoTen(hoTen);
-//        LopHoc lopHoc = new LopHoc();
-//        lopHoc.setId(Integer.parseInt(lop));
-//        sinhVien.setLop(lopHoc);
+
 //        sinhVienService.addNew(sinhVien);
 
         response.sendRedirect("/sinh-vien/hien-thi");

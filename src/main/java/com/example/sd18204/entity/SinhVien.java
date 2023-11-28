@@ -37,4 +37,22 @@ public class SinhVien {
     @Column(name = "canNang")
     private String canNang;
 
+    public void copyProperties(SinhVienViewModel sinhVienViewModel) {
+        this.hoTen = sinhVienViewModel.getHoTen();
+        this.gioiTinh = sinhVienViewModel.getGioiTinh();
+        this.lop = new LopHoc(sinhVienViewModel.getLop(), "");
+    }
+
+    @Override
+    public String toString() {
+        return "SinhVien{" +
+                "id=" + id +
+                ", hoTen='" + hoTen + '\'' +
+                ", lop=" + lop +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                ", diaChi='" + diaChi + '\'' +
+                ", chieuCao='" + chieuCao + '\'' +
+                ", canNang='" + canNang + '\'' +
+                '}';
+    }
 }
